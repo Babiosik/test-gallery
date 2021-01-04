@@ -24,7 +24,10 @@ class _CardGalleryState extends State<CardGallery> {
             padding: EdgeInsets.all(1),
             color: ThemeData.dark().primaryColor,
             alignment: Alignment.center,
-            child: Text(widget.unsplashPhotoItem.author),
+            child: Text(
+              widget.unsplashPhotoItem.author,
+              style: TextStyle(color: Colors.blue[700]),
+            ),
           ),
           child: Image.network(
             widget.unsplashPhotoItem.image.thumb,
