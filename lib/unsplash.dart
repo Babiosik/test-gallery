@@ -10,7 +10,12 @@ class UnsplashAPI {
     //Create link with parameters
     String link = getPhotoURL.replaceFirst("?page=", "?page=$page") + _API_KEY;
     //Send get request
-    Response response = await get(link);
+    Response response;
+    try {
+      response = await get(link);
+    } catch (e) {
+      return null;
+    }
     
     //Checking response
     if (response.statusCode != 200)

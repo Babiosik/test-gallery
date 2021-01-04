@@ -13,6 +13,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
   List<UnsplashPhotoItem> _data;
   int _page = 0;
   bool _isLoading = false;
+  bool _isError = false;
 
   @override
   void initState() {
@@ -30,11 +31,18 @@ class _GalleryScreenState extends State<GalleryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Widget loadingIndicator = new CircularProgressIndicator( value: null, strokeWidth: 7.0, );
+    if (_isError) {
+      loadingIndicator = IconButton(
+        icon: Icon(Icons.error_outline),
+        onPressed: () => _loadNext()
+      );
+    }
     Widget body = Container();
     if (_data.length == 0) {
       body = Container(
         alignment: Alignment.center,
-        child: new CircularProgressIndicator( value: null, strokeWidth: 7.0, ),
+        child: loadingIndicator,
       );
     } else {
       body = Container(
@@ -63,15 +71,37 @@ class _GalleryScreenState extends State<GalleryScreen> {
     if (_controller.position.extentAfter < 500)
       _loadNext();
   }
-  
+
   // Loading next lest with photo
   void _loadNext() {
     if (_isLoading)
       return;
     _isLoading = true;
     UnsplashAPI.getImagesList(_page++).then((value) => setState(() {
-      _data.addAll(value);
       _isLoading = false;
+      _isError = value == null;
+      if (!_isError)
+        _data.addAll(value);
+      else
+        _showError(context);
     }));
   }
+
+  void _showError(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Error"),
+          content: Text("There was an error loading data"),
+          actions: [
+            FlatButton(
+              child: Text("OK"),
+              onPressed: () { Navigator.of(context).pop(); },
+            ),
+          ],
+        );
+      },
+    );
+  } 
 }
