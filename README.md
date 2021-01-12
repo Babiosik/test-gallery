@@ -2,8 +2,8 @@
 
 A Flutter project galery on unsplash RESTful.
 
-![Galery](https://github.com/Babiosik/test-gallery/downloadable/ImageGalery.jpg?raw=true)
-![Image](https://github.com/Babiosik/test-gallery/downloadable/ImageOmage.jpg?raw=true)
+![Galery](https://github.com/Babiosik/test-gallery/blob/master/downloadable/ImageGalery.jpg)
+![Image](https://github.com/Babiosik/test-gallery/blob/master/downloadable/ImageOmage.jpg)
 
 Download apk:
 [app-arm64-v8a-release](https://github.com/Babiosik/test-gallery/downloadable/app-arm64-v8a-release.apk)
