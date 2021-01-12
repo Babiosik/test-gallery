@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:test_task/cardGalleryWidget.dart';
-import 'package:test_task/unsplash.dart';
+import 'package:Unsplash_Gallery/cardGalleryWidget.dart';
+import 'package:Unsplash_Gallery/unsplash.dart';
 
 class GalleryScreen extends StatefulWidget {
   @override
@@ -93,7 +93,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Error"),
-          content: Text("There was an error loading data"),
+          content: Text("There was an error loading data\n${UnsplashAPI.error}"),
           actions: [
             FlatButton(
               child: Text("OK"),

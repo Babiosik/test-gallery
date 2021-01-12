@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 class UnsplashAPI {
-  static String _API_KEY = "896d4f52c589547b2134bd75ed48742db637fa51810b49b607e37e46ab2c0043";
+  static String _API_KEY = "Npz6x6oGUK5wQRQ-JlhwIiLu_XUsdMbZw-NnhpJz4iM";
   static String getPhotoURL = "https://api.unsplash.com/photos/?page=&per_page=30&client_id=";
 
+  static String error = "no error";
   static Future<List<UnsplashPhotoItem>> getImagesList(int page) async {
     List<UnsplashPhotoItem> list = new List<UnsplashPhotoItem>();
     //Create link with parameters
@@ -14,18 +15,22 @@ class UnsplashAPI {
     try {
       response = await get(link);
     } catch (e) {
+      error = e.toString();
       return null;
     }
     
     //Checking response
-    if (response.statusCode != 200)
+    if (response.statusCode != 200) {
+      error = "Status code ${response.statusCode}";
       return null;
+    }
     
     //Try parse response json
     dynamic obj;
     try {
       obj = json.decode(response.body);
     } catch (e) {
+      error = e.toString();
       return null;
     }
 
@@ -52,6 +57,7 @@ class UnsplashAPI {
       //Create and add parsed item to list
       list.add(new UnsplashPhotoItem(id, author, UnsplashImage.fromPartOfJson(urls)));
     }
+    error = "no error 1";
     return list;
   }
 }

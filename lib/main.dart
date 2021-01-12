@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_task/galleryScreen.dart';
-import 'package:test_task/photoScreen.dart';
+import 'package:Unsplash_Gallery/galleryScreen.dart';
+import 'package:Unsplash_Gallery/photoScreen.dart';
 
 void main() {
   runApp(MyApp());

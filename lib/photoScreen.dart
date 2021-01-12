@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_task/unsplash.dart';
+import 'package:Unsplash_Gallery/unsplash.dart';
 
 class PhotoScreen extends StatefulWidget {
   static final String routeName = "/image";
